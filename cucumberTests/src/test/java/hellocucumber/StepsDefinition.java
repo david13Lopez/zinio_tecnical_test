@@ -25,10 +25,9 @@ class IsCorrectLogin {
     }
 }
 
-public class Stepdefs {
+public class StepsDefinition {
     private String user;
     private String password;
-
     private String correctLogin;
 
     @Given("Correct user and password")
@@ -58,14 +57,17 @@ public class Stepdefs {
     public void i_want_to_login_with_correct_data() {
         correctLogin = IsCorrectLogin.isCorrectLogin(user,password);
     }
+
     @When("I want to login with correct user")
     public void i_want_to_login_with_correct_user() {
         correctLogin = IsCorrectLogin.isCorrectLogin(user,password);
     }
+
     @When("I want to login with correct password")
     public void i_want_to_login_with_correct_password() {
         correctLogin = IsCorrectLogin.isCorrectLogin(user,password);
     }
+
     @When("I want to login with incorrect data")
     public void i_want_to_login_with_incorrect_data() {
         correctLogin = IsCorrectLogin.isCorrectLogin(user,password);

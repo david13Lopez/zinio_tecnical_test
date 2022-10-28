@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
@@ -22,34 +21,33 @@ public class IncorrectMailAndPasswordTest {
         desiredCapabilities.setCapability("appium:platformVersion", "9");
         desiredCapabilities.setCapability("appium:newCommandTimeout", 3600);
         desiredCapabilities.setCapability("appium:connectHardwareKeyboard", true);
-
         URL remoteUrl = new URL("http://127.0.0.1:4723/wd/hub");
-
         driver = new AppiumDriver(remoteUrl, desiredCapabilities);
     }
 
     @Test
     public void correctLoginTest() {
-        WebElement el1 = driver.findElement(By.id("com.zinio.mobile.android.reader:id/menu_account"));
+        WebElement el1 = driver.findElement(By.id(ConstantIds.bottomBarProfileItem));
         el1.click();
-        WebElement el2 = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.view.ViewGroup/androidx.viewpager.widget.ViewPager/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.view.ViewGroup"));
+        WebElement el2 = driver.findElement(By.xpath(ConstantIds.profileMenuSignInElement));;
         el2.click();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
-        WebElement el3 = driver.findElement(By.className("android.widget.Button"));
+        WebElement el3 = driver.findElement(By.className(ConstantIds.selectMethodSignInScreenButton));
         el3.click();
-        WebElement el4 = driver.findElement(By.id("com.zinio.mobile.android.reader:id/email_field"));
+        WebElement el4 = driver.findElement(By.id(ConstantIds.signInScreenEmailField));
         el4.click();
-        el4.sendKeys("incorrectMail@test.com");
-        WebElement el5 = driver.findElement(By.id("com.zinio.mobile.android.reader:id/password_field"));
+        el4.sendKeys(ConstantIds.incorrectEmailValue);
+        WebElement el5 =  driver.findElement(By.id(ConstantIds.signInScreenPasswordField));
         el5.click();
-        el5.sendKeys("wrongPassword");
-        WebElement el6 = driver.findElement(By.id("com.zinio.mobile.android.reader:id/sign_in_button"));
+        el5.sendKeys(ConstantIds.incorrectPasswordValue);
+        WebElement el6 =  driver.findElement(By.id(ConstantIds.signInScreenSignInButton));
         el6.click();
-        WebElement el7 = driver.findElement(By.id("com.zinio.mobile.android.reader:id/snackbar_text"));
+        WebElement el7 = driver.findElement(By.id(ConstantIds.signInScreenErrorBanner));
         el7.isDisplayed();
-        WebElement el8 = driver.findElement(By.id("com.zinio.mobile.android.reader:id/close_button"));
+        WebElement el8 = driver.findElement(By.id(ConstantIds.signInScreenCloseButton));
         el8.click();
+
     }
 
     @After
